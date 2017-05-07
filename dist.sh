@@ -31,6 +31,7 @@ done
 echo "updating relevant variables...."
 SED_PARAM=s/UA-XXXXXXXX-X/$GA_CODE/g
 sed -i -e $SED_PARAM dist/js/popup.js
+rm dist/js/popup.js-e
 
 # Compress
 cd dist; zip -r remo_for_pooq_$VERSION.zip ${DEPLOY_TARGET[@]}
