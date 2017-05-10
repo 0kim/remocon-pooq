@@ -9,6 +9,8 @@
 - [Remocon for Pooq @Chrome Web Store](https://chrome.google.com/webstore/detail/remocon-for-pooq/fanlfkdjgojjhjigakefkncagnfiekel)
 
 ## 릴리즈 노트 
+### v.3 - 2017/05/10
+- 처음 실행시 채널 동작 안되는 문제 수정
 ### v.2 - 2017/05/08
 - 단축채널 기능이 추가 되었습니다. 1\~7 키를 눌러 KBS~JTBC 채널로 바로 전환할 수 있습니다.
 ### v.1 - 2017/01
