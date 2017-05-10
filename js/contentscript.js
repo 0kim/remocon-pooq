@@ -1,13 +1,13 @@
 
+setTimeout( function(){
+    var s = document.createElement('script');
 
-var s = document.createElement('script');
-
-s.src = chrome.extension.getURL('js/remopooq.js');
-s.onload = function() {
-    this.remove();
-};
-(document.head || document.documentElement).appendChild(s);
-
+    s.src = chrome.extension.getURL('js/remopooq.js');
+    s.onload = function() {
+        this.remove();
+    };
+    (document.head || document.documentElement).appendChild(s);
+}, 500)
 
 document.addEventListener('keydown', (event) => {
 

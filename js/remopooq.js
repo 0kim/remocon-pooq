@@ -8,39 +8,30 @@ var ce_channel_list = [
     {'contentid': 'C2301'}
 ]
 
-function checkPlayerLoading()
-{
-    if( typeof player !== 'undefined') {
-        if( typeof player.listUI !== 'undefined' ) {
+if( typeof player !== 'undefined') {
+    if( typeof player.listUI !== 'undefined' ) {
 
-            function change_channel(contentID) {
-                console.log("chnage_channel... " + contentID)
-                var opt = new Object();
-                opt.isLive = true;
-                opt.isAutoPlay = true;
-                opt.programID = "";
-                opt.cornerID = "";
+        function change_channel(contentID) {
+            console.log("chnage_channel... " + contentID)
+            var opt = new Object();
+            opt.isLive = true;
+            opt.isAutoPlay = true;
+            opt.programID = "";
+            opt.cornerID = "";
 
-                jarvis.lib.excuteDelegate( player.listUI.delegate,
-                                           "onEvent",
-                                           [jarvis.PLAYER_EVENT.VOD_CHANGE, contentID, opt]);
-            }
+            jarvis.lib.excuteDelegate( player.listUI.delegate,
+                                       "onEvent",
+                                       [jarvis.PLAYER_EVENT.VOD_CHANGE, contentID, opt]);
+        }
 
-            var i = 0;
-            for(var c in ce_channel_list) {
-                i++;
-                v = $("<div id='channel_" + i + "'></div>").attr("channel",ce_channel_list[c]['contentid']).on('click',
-                    function() {
-                        change_channel( $(this).attr('channel') );
-                    });
-                v.appendTo($('body'));
-            }
-            return;
+        var i = 0;
+        for(var c in ce_channel_list) {
+            i++;
+            v = $("<div id='channel_" + i + "'></div>").attr("channel",ce_channel_list[c]['contentid']).on('click',
+                function() {
+                    change_channel( $(this).attr('channel') );
+                });
+            v.appendTo($('body'));
         }
     }
-
-    setTimeout(checkPlayerLoading, 10);
 }
-
-checkPlayerLoading();
-
