@@ -7,6 +7,7 @@
 
 ## 다운로드 
 - [Remocon for Pooq @Chrome Web Store](https://chrome.google.com/webstore/detail/remocon-for-pooq/fanlfkdjgojjhjigakefkncagnfiekel)
+- [Remocon for Pooq @Whale Store](https://store.whale.naver.com/detail/afckmaohmopmianbgpmpjemeijcmiioe)
 
 ## 릴리즈 노트 
 ### v.3 - 2017/05/10
