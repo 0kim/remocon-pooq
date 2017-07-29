@@ -8,6 +8,8 @@ var ce_channel_list = [
     {'contentid': 'C2301'}
 ]
 
+var extension_id = '{{APP_ID}}';
+
 if( typeof player !== 'undefined') {
     if( typeof player.listUI !== 'undefined' ) {
 
@@ -24,12 +26,23 @@ if( typeof player !== 'undefined') {
                                        [jarvis.PLAYER_EVENT.VOD_CHANGE, contentID, opt]);
         }
 
+        function sendmsg_change_channel(msg) {
+            chrome.runtime.sendMessage(extension_id, msg,
+                function(response) {
+                    console.log('sent a msg');
+                });
+        }
+
         var i = 0;
         for(var c in ce_channel_list) {
             i++;
-            v = $("<div id='channel_" + i + "'></div>").attr("channel",ce_channel_list[c]['contentid']).on('click',
+            v = $("<div id='channel_" + i + "'></div>")
+                .attr("channel",ce_channel_list[c]['contentid'])
+                .attr("number", i)
+                .on('click',
                 function() {
                     change_channel( $(this).attr('channel') );
+                    sendmsg_change_channel({'channelid': $(this).attr('channel'), 'number':$(this).attr('number')});
                 });
             v.appendTo($('body'));
         }

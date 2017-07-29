@@ -1,4 +1,4 @@
-VERSION=0.3
+VERSION=0.11
 DEPLOY_TARGET=(
     "_locales"
     "assets"
@@ -16,6 +16,15 @@ else
     exit
 fi
 
+# check APP_ID (Google Extension ID)
+if [ $APP_ID ];
+then
+    echo "APP_ID($APP_ID) is used."
+else
+    echo "Please specify APP_ID variable."
+    exit
+fi
+
 # Clean dist directory
 echo "cleaning dist directory..."
 rm -rf ./dist/*
@@ -29,9 +38,22 @@ done
 
 # Find and Replace ga code
 echo "updating relevant variables...."
+ga_js_files=("dist/js/popup.js" "dist/js/eventPage.js")
 SED_PARAM=s/UA-XXXXXXXX-X/$GA_CODE/g
-sed -i -e $SED_PARAM dist/js/popup.js
-rm dist/js/popup.js-e
+for v in "${ga_js_files[@]}"; do
+    sed -i -e $SED_PARAM $v
+done
+
+# find and replace extension id cod
+echo "updating relevant variables...."
+app_id_files=("dist/js/remopooq.js")
+SED_PARAM=s/{{APP_ID}}/$APP_ID/g
+for v in "${app_id_files[@]}"; do
+    sed -i -e $SED_PARAM $v
+done
+
+# Delete redundant files
+rm dist/js/*.js-e
 
 # Compress
 cd dist; zip -r remo_for_pooq_$VERSION.zip ${DEPLOY_TARGET[@]}
